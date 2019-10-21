@@ -56,7 +56,7 @@ public:
   List();
   List(const List<T>&);
   List(const std::initializer_list&);
-  
+
   void push_back(const T& value);
   void push_front(const T& value);
   T& back();
@@ -135,4 +135,4 @@ The following source files:
     1. Stack.h
     1. runtests.cpp
 
-Your `runtests.cpp` must have at least 50(?) addiontal tests to tests all of the functions and methods on the 3 classes.
+Your `runtests.cpp` must have at least 50(?) additional tests to tests all of the functions and methods on the 3 classes.

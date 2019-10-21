@@ -11,9 +11,11 @@ class List
 	typedef struct llist {
 		T val;
 		struct llist *next;
+		struct llist *prev;
 	} llist;
 
-	llist *_data;
+	llist *_front;
+	llist *_back;
 	size_t _size;
 
 	// private recursive copy so elements
@@ -28,20 +30,22 @@ class List
 	}
 
 	public:
-	
+
 	// default constructor
 	List()
 	{
-		_data = 0;
+		_front = 0;
+		_back = 0;
 		_size = 0;
 	}
 
 	// copy constructor
 	List(const List& other)
 	{
-		_data = 0;
+		_front = 0;
+		_back = 0;
 		_size = 0;
-		reccopy(other._data);
+		reccopy(other._front);
 	}
 
 	// destructor
@@ -54,7 +58,7 @@ class List
 	List& operator=(const List& other)
 	{
 		clear();
-		reccopy(other._data);
+		reccopy(other._front);
 		return *this;
 	}
 
@@ -66,37 +70,84 @@ class List
 
 	T& front()
 	{
-		return _data->val;
+		return _front->val;
 	}
 
 	const T& front() const
 	{
-		return _data->val;
+		return _front->val;
+	}
+
+	T& back()
+	{
+		return _back->val;
+	}
+
+	const T& back() const
+	{
+		return _back->val;
 	}
 
 	void push_front(const T& val)
 	{
 		llist *newItem = new llist;
 		newItem->val = val;
-		newItem->next = _data;
-		_data = newItem;
+		newItem->next = _front;
+		newItem->prev = 0;
+		if(_front)
+			_front->prev = newItem;
+		if(_back == 0)
+			_back = newItem;
+		_front = newItem;
+		_size++;
+	}
+
+	void push_back(const T& val)
+	{
+		llist *newItem = new llist;
+		newItem->val = val;
+		newItem->prev = _back;
+		newItem->next = 0;
+		if(_back)
+			_back->next = newItem;
+		if(_front == 0)
+			_front = newItem;
+		_back = newItem;
 		_size++;
 	}
 
 	void pop_front()
 	{
-		llist *front = _data;
-		if (front)
+		llist *newFront = _front;
+		if (newFront)
 		{
-			_data = front->next;
-			delete front;
-			_size--;
+			_front = newFront->next;
+			delete newFront;
+//			_size--;
 		}
+		else
+			_back = 0;
+		_size--;
+	}
+
+	void pop_back()
+	{
+		llist *newBack = _back;
+		if (newBack)
+		{
+			_back = newBack->prev;
+			delete newBack;
+//			_size--;
+		}
+		else
+			_front = 0;
+		_size--;
+
 	}
 
 	bool empty() const
 	{
-		return _data == 0;
+		return (_front == 0)&&(_back == 0);
 	}
 
 	size_t size() const

@@ -5,7 +5,7 @@
 
 #include <string>
 
-#if 0
+#if 1
 #include "List.h"
 typedef List<std::string> StringList;
 typedef List<int> IntList;
@@ -84,5 +84,3 @@ int main()
 
 	return 0;
 }
-
-
