@@ -62,6 +62,32 @@ class List
 		return *this;
 	}
 
+/*
+	void printData(bool addr = 0)
+	{
+		std::cout << "Object at Address " << this << ":\n";
+		llist *ptr = new llist;
+		for(ptr = _front; ptr != 0; ptr = ptr->next)
+		{
+			if(!addr)
+			{
+				if(ptr->val != "")
+					std::cout << ptr->val << std::endl;
+				else
+					std::cout << "-" << std::endl;
+			}
+			else
+			{
+				if(ptr->val != "")
+					std::cout << "At address " << ptr << ": " << ptr->val << std::endl;
+				else
+					std::cout << "-" << std::endl;
+			}
+		}
+		std::cout << std::endl;
+		delete ptr;
+	}
+*/
 	void clear()
 	{
 		while(!empty())
@@ -147,7 +173,7 @@ class List
 
 	bool empty() const
 	{
-		return (_front == 0)&&(_back == 0);
+		return (_front == 0)||(_back == 0);
 	}
 
 	size_t size() const

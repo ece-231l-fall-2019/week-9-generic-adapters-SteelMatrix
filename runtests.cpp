@@ -47,11 +47,13 @@ int main()
 	Assert(a.front() == "Z", "front == Z");
 
 	b = a;
-
+	// a.printData(1);
+	// b.printData(1);
 	Assert(b.front() == "Z", "b.front == Z");
 	b.pop_front();
 	Assert(b.front() == "A", "b.front == A");
 	b.pop_front();
+	// b.printData(1);
 	Assert(b.empty() == true, "b is empty");
 	Assert(a.empty() == false, "a is NOT empty");
 
