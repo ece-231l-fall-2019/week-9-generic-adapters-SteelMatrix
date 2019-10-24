@@ -2,7 +2,7 @@
 #define __EE231_List_h__
 
 #include <cstddef>
-
+#include <initializer_list>
 template<typename T>
 class List
 {
@@ -42,10 +42,17 @@ class List
 	// copy constructor
 	List(const List& other)
 	{
-		_front = 0;
-		_back = 0;
-		_size = 0;
+		clear();
 		reccopy(other._front);
+	}
+
+	List(std::initializer_list<T> list) : _front(nullptr), _back(nullptr), _size(0)
+	{
+/*		_front = 0;
+		_back = 0;
+		_size = 0;*/
+		for(auto value: list)
+			push_back(value);
 	}
 
 	// destructor

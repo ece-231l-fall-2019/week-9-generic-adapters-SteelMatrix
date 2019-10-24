@@ -32,7 +32,7 @@ class Queue
 
     void pop()
     {
-      c.pop_front();
+      c.pop_back();
     }
 
     size_t size() const
