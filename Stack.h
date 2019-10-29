@@ -4,52 +4,53 @@ class Stack
   protected:
     List<T> c;
   public:
-	Stack()
-	{
-	}
+		Stack()
+		{
+		}
 
-	Stack(std::initializer_list<T> l): c(l)
-	{
-	}
+		Stack(std::initializer_list<T> l): c(l)
+		{
+		}
 
-    T& top()
-    {
-      return c.back();
-    }
+	  T& top()
+	  {
+	    return c.back();
+	  }
 
-    const T& top() const
-    {
-      return c.back();
-    }
+	  const T& top() const
+	  {
+	    return c.back();
+	  }
 
-    void push(const T& a)
-    {
-      c.push_back(a);
-    }
+	  void push(const T& a)
+	  {
+	    c.push_back(a);
+	  }
 
-    void pop()
-    {
-      c.pop_back();
-    }
+	  void pop()
+	  {
+	    c.pop_back();
+	  }
 
-    size_t size() const
-    {
-      return c.size();
-    }
+	  size_t size() const
+	  {
+	    return c.size();
+	  }
 
-    bool empty() const
-    {
-      return c.empty();
-    }
+	  bool empty() const
+	  {
+	    return c.empty();
+	  }
 
-    Stack<T>& operator=(const Stack<T>& other)
-    {
-      c = other.c;
-    }
-	template<typename TT>
-	friend bool operator==(const Stack<TT>&, const Stack<TT>&);
-	template<typename TT>
-	friend bool operator!=(const Stack<TT>&, const Stack<TT>&);
+	  Stack<T>& operator=(const Stack<T>& other)
+	  {
+	    c = other.c;
+			return *this;
+	  }
+		template<typename TT>
+		friend bool operator==(const Stack<TT>&, const Stack<TT>&);
+		template<typename TT>
+		friend bool operator!=(const Stack<TT>&, const Stack<TT>&);
 };
 
 template<typename T>

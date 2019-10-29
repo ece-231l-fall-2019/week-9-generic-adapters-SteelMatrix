@@ -83,11 +83,15 @@ int main()
 	Assert(ic.top() == 5, "top is 5");
 
 	IntStack ib = {1, 2, 3, 4, 5, 6};
-	Assert(ib.top() == 1, "front is 1");
+	Assert(ib.top() == 6, "top is 6");
 
 	IntStack ib2;
 	ib2 = ib;
-	Assert(ib == ib2, "TRUE");
+	Assert(ib == ib2, "ib == ib2 before pop");
+	Assert(ib != ib2, "ib != ib2 before pop");
+	ib2.pop();
+	Assert(ib == ib2, "ib == ib2 after pop");
+	Assert(ib != ib2, "ib != ib2 after pop");
 
 	// TODO: check all methods on IntStack...
 

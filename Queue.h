@@ -32,7 +32,7 @@ class Queue
 
     void pop()
     {
-      c.pop_back();
+      c.pop_front();
     }
 
     size_t size() const
@@ -47,18 +47,24 @@ class Queue
 
     Queue<T>& operator=(const Queue<T>& other)
     {
-      c = other;
+      c = other.c;
+      return *this;
     }
+
+    template<typename TT>
+    friend bool operator==(const Queue<TT>&, const Queue<TT>&);
+    template<typename TT>
+    friend bool operator!=(const Queue<TT>&, const Queue<TT>&);
 };
 
 template<typename T>
 bool operator==(const Queue<T>& a, const Queue<T>& b)
 {
-  return true; //a.c == b.c;
+  return a.c == b.c;
 }
 
 template<typename T>
 bool operator!=(const Queue<T>& a, const Queue<T>& b)
 {
-  return true; //a.c != b.c;
+  return a.c != b.c;
 }

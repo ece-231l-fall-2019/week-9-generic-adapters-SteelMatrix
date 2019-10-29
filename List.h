@@ -152,35 +152,35 @@ class List
 	void pop_front()
 	{
 		llist *newFront = _front;
-		if (newFront)
+		_front = _front->next;
+		if (_front)
 		{
-			_front = newFront->next;
-			delete newFront;
-//			_size--;
+			_front->prev = nullptr;
 		}
 		else
-			_back = 0;
+			_back = nullptr;
 		_size--;
+		delete newFront;
 	}
 
 	void pop_back()
 	{
 		llist *newBack = _back;
-		if (newBack)
+		_back = _back->prev;
+		if (_back)
 		{
-			_back = newBack->prev;
-			delete newBack;
-//			_size--;
+			_back->next = nullptr;
 		}
 		else
-			_front = 0;
+			_front = nullptr;
 		_size--;
+		delete newBack;
 
 	}
 
 	bool empty() const
 	{
-		return (_front == 0)||(_back == 0);
+		return (_front == nullptr)&&(_back == nullptr);
 	}
 
 	size_t size() const
@@ -215,19 +215,19 @@ bool operator==(const List<T>& a, const List<T>& b)
 template<typename T>
 bool operator!=(const List<T>& a, const List<T>& b)
 {
-	if(a.size() == b.size())
-		return false;
+	if(a.size() != b.size())
+		return true;
 
 	const typename List<T>::llist *aptr = a._front; //What auto is doing
 	auto bptr = b._front; //Shorter version of the above
 
 	for(; aptr != nullptr && bptr != nullptr; aptr=aptr->next, bptr=bptr->next)
 	{
-		if(aptr->val == bptr->val)
-			return false;
+		if(aptr->val != bptr->val)
+			return true;
 	}
 
-	return true;
+	return false;
 }
 
 #endif // __EE231_List_h__
