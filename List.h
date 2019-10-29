@@ -218,8 +218,8 @@ bool operator!=(const List<T>& a, const List<T>& b)
 	if(a.size() == b.size())
 		return false;
 
-	auto aptr = a._front;
-	auto bptr = b._front;
+	const typename List<T>::llist *aptr = a._front; //What auto is doing
+	auto bptr = b._front; //Shorter version of the above
 
 	for(; aptr != nullptr && bptr != nullptr; aptr=aptr->next, bptr=bptr->next)
 	{
