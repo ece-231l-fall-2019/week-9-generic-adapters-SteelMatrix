@@ -187,6 +187,47 @@ class List
 	{
 		return _size;
 	}
+
+	template<typename M>
+	friend bool operator==(const List<M>&, const List<M>&);
+	template<typename M>
+	friend bool operator!=(const List<M>&, const List<M>&);
 };
+
+template<typename T>
+bool operator==(const List<T>& a, const List<T>& b)
+{
+	if(a.size() != b.size())
+		return false;
+
+	auto aptr = a._front;
+	auto bptr = b._front;
+
+	for(; aptr != nullptr && bptr != nullptr; aptr=aptr->next, bptr=bptr->next)
+	{
+		if(aptr->val != bptr->val)
+			return false;
+	}
+
+	return true;
+}
+
+template<typename T>
+bool operator!=(const List<T>& a, const List<T>& b)
+{
+	if(a.size() == b.size())
+		return false;
+
+	auto aptr = a._front;
+	auto bptr = b._front;
+
+	for(; aptr != nullptr && bptr != nullptr; aptr=aptr->next, bptr=bptr->next)
+	{
+		if(aptr->val == bptr->val)
+			return false;
+	}
+
+	return true;
+}
 
 #endif // __EE231_List_h__

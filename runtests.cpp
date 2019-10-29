@@ -82,8 +82,12 @@ int main()
 	ic.push(5);
 	Assert(ic.top() == 5, "top is 5");
 
-	IntList ib = {1, 2, 3, 4, 5, 6};
-	Assert(ib.front() == 1, "front is 1");
+	IntStack ib = {1, 2, 3, 4, 5, 6};
+	Assert(ib.top() == 1, "front is 1");
+
+	IntStack ib2;
+	ib2 = ib;
+	Assert(ib == ib2, "TRUE");
 
 	// TODO: check all methods on IntStack...
 
