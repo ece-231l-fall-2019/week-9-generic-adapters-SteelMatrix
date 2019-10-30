@@ -1,70 +1,83 @@
 template<typename T>
 class Queue
 {
-  protected:
-    List<T> c;
-  public:
+	protected:
+	List<T> c;
+	public:
 
-    T& front()
-    {
-      return c.front();
-    }
+	Queue()
+	{
+	}
 
-    const T& front() const
-    {
-      return c.front();
-    }
+	Queue(std::initializer_list<T> l): c(l)
+	{
+	}
 
-    T& back()
-    {
-      return c.back();
-    }
+	T& front()
+	{
+		return c.front();
+	}
 
-    const T& back() const
-    {
-      return c.back();
-    }
+	const T& front() const
+	{
+		return c.front();
+	}
 
-    void push(const T& a)
-    {
-      c.push_back(a);
-    }
+	T& back()
+	{
+		return c.back();
+	}
 
-    void pop()
-    {
-      c.pop_front();
-    }
+	const T& back() const
+	{
+		return c.back();
+	}
 
-    size_t size() const
-    {
-      return c.size();
-    }
+	void push(const T& a)
+	{
+		c.push_back(a);
+	}
 
-    bool empty() const
-    {
-      return c.empty();
-    }
+	void pop()
+	{
+		c.pop_front();
+	}
 
-    Queue<T>& operator=(const Queue<T>& other)
-    {
-      c = other.c;
-      return *this;
-    }
+	size_t size() const
+	{
+		return c.size();
+	}
 
-    template<typename TT>
-    friend bool operator==(const Queue<TT>&, const Queue<TT>&);
-    template<typename TT>
-    friend bool operator!=(const Queue<TT>&, const Queue<TT>&);
+	bool empty() const
+	{
+		return c.empty();
+	}
+
+	Queue<T>& operator=(const Queue<T>& other)
+	{
+		c = other.c;
+		return *this;
+	}
+
+	void clear()
+	{
+		c.clear();
+	}
+
+	template<typename TT>
+	friend bool operator==(const Queue<TT>&, const Queue<TT>&);
+	template<typename TT>
+	friend bool operator!=(const Queue<TT>&, const Queue<TT>&);
 };
 
 template<typename T>
 bool operator==(const Queue<T>& a, const Queue<T>& b)
 {
-  return a.c == b.c;
+	return a.c == b.c;
 }
 
 template<typename T>
 bool operator!=(const Queue<T>& a, const Queue<T>& b)
 {
-  return a.c != b.c;
+	return a.c != b.c;
 }
