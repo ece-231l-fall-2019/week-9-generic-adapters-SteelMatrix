@@ -107,11 +107,11 @@ int main()
 
 	sq = {"Test", "A", "B", "C", "D", "End Test"};
 	Assert(sq.empty() == false, "sq is NOT empty\t\t\t\t\t\t(6)");
-	Assert(sq.size() == 6, "The size of sq is 6\t\t\t\t\t\t(7)");
+	Assert(sq.size() == 6, "The size of sq is 6\t\t\t\t\t(7)");
 	Assert(sq.front() == "Test", "Front of sq is \"Test\"\t\t\t\t\t(8)");
 	Assert(sq.back() == "End Test", "Back of sq is \"End Test\"\t\t\t\t\t(9)");
 	sq.pop();
-	Assert(sq.size() == 5, "The size of sq is 5\t\t\t\t(10)");
+	Assert(sq.size() == 5, "The size of sq is 5\t\t\t\t\t(10)");
 	Assert(sq.front() == "A", "Front of sq is \"A\" after pop\t\t\t\t(11)");
 	sq.push("E");
 	Assert(sq.back() == "E", "Back of sq is \"E\" after push\t\t\t\t(12)");
