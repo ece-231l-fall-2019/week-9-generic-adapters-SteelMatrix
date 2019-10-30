@@ -198,6 +198,9 @@ int main()
 	il2.clear();
 	Assert(il.empty() == true, "il is empty after clear()\t\t\t\t\t(53)");
 	Assert(il2.empty() == true, "il2 is empty after clear()\t\t\t\t(54)");
+	il = {0, 0, 0, 0, 1, 2, 4, 5, 6, 6, 6, 6};
+	il.reverse();
+//	il.unique();
 
 
 	return 0;

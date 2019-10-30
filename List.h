@@ -34,8 +34,8 @@ class List
 	// default constructor
 	List()
 	{
-		_front = 0;
-		_back = 0;
+		_front = nullptr;
+		_back = nullptr;
 		_size = 0;
 	}
 
@@ -126,10 +126,10 @@ class List
 		llist *newItem = new llist;
 		newItem->val = val;
 		newItem->next = _front;
-		newItem->prev = 0;
+		newItem->prev = nullptr;
 		if(_front)
 			_front->prev = newItem;
-		if(_back == 0)
+		if(_back == nullptr)
 			_back = newItem;
 		_front = newItem;
 		_size++;
@@ -140,10 +140,10 @@ class List
 		llist *newItem = new llist;
 		newItem->val = val;
 		newItem->prev = _back;
-		newItem->next = 0;
+		newItem->next = nullptr;
 		if(_back)
 			_back->next = newItem;
-		if(_front == 0)
+		if(_front == nullptr)
 			_front = newItem;
 		_back = newItem;
 		_size++;
@@ -186,6 +186,39 @@ class List
 	size_t size() const
 	{
 		return _size;
+	}
+
+	void reverse()
+	{
+		if(_size <= 1)
+			return;
+		for(llist* ptr = _front; ptr != nullptr; ptr = ptr->prev)
+		{
+			llist* tmp = ptr->next;
+			ptr->next = ptr->prev;
+			ptr->prev = tmp;
+		}
+		llist* tmp2 = _back;
+		_back = _front;
+		_front = tmp2;
+	}
+
+	void unique()
+	{
+		for(llist* ptr = _front; ptr != nullptr; ptr=ptr->next)
+		{
+			while((ptr->next != nullptr)&&(ptr->val==ptr->next->val))
+			{
+				_size--;
+				llist* saveptr = ptr->next;
+				ptr->next = saveptr->next;
+				if(saveptr->next != nullptr)
+					saveptr->next->prev = ptr;
+				else
+					_back = ptr;
+				delete saveptr;
+			}
+		}
 	}
 
 	template<typename M>
