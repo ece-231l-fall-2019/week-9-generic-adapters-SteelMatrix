@@ -199,9 +199,19 @@ int main()
 	Assert(il.empty() == true, "il is empty after clear()\t\t\t\t\t(53)");
 	Assert(il2.empty() == true, "il2 is empty after clear()\t\t\t\t(54)");
 	il = {0, 0, 0, 0, 1, 2, 4, 5, 6, 6, 6, 6};
+	Assert(il.size() == 12, "il size after populating with duplicates\t\t\t(55)");
+	il.unique();
+	Assert(il.size() == 6, "il size after extracting uniques\t\t\t\t(56)");
+	Assert((il.front() == 0)&&(il.back()==6), "il front and back before reverse\t\t\t\t(57)");
 	il.reverse();
-//	il.unique();
-
+	Assert((il.front()==6)&&(il.back()==0), "il front and back after reverse\t\t\t\t(58)");
+	sl = {"A", "B", "B", "C", "C", "D"};
+	Assert(il.size() == 6, "sl size after populating with duplicates\t\t\t(59)");
+	sl.unique();
+	Assert(sl.size() == 4, "sl size after extracting uniques\t\t\t\t(60)");
+	Assert((sl.front()=="A")&&(sl.back()=="D"), "sl front and back before reverse\t\t\t\t(61)");
+	sl.reverse();
+	Assert((sl.back()=="A")&&(sl.front()=="D"), "sl front and back after reverse\t\t\t\t(62)");
 
 	return 0;
 }
